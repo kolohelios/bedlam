@@ -20,7 +20,7 @@ var server;
 describe('GET /converters/currency/{amount}', function(){
   before(function(done){
     Server.init(function(err, srvr){
-      if(err){ throw err;}
+      if(err){ throw err; }
       server = srvr;
       done();
     });

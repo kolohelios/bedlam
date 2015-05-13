@@ -44,4 +44,18 @@ describe('GET /puzzles/getvowels/{text}', function(){
       done();
     });
   });
+  it('should return 0 for rhythym', function(done){
+    server.inject({method: 'GET', url: '/puzzles/vowelcount/rythym', credentials: {_id: 3}}, function(response){
+      expect(response.statusCode).to.equal(200);
+      expect(response.result.value).to.equal(0);
+      done();
+    });
+  });
+  it('should return 5 for education (and one of each vowel)', function(done){
+    server.inject({method: 'GET', url: '/puzzles/vowelcount/education', credentials: {_id: 3}}, function(response){
+      expect(response.statusCode).to.equal(200);
+      expect(response.result.value).to.equal(5);
+      done();
+    });
+  });
 });

@@ -51,4 +51,46 @@ describe('GET /puzzles/isprime/{num}', function(){
       done();
     });
   });
+  it('should return true for 1', function(done){
+    server.inject({method: 'GET', url: '/puzzles/isprime/1', credentials: {_id: 3}}, function(response){
+      expect(response.statusCode).to.equal(200);
+      expect(response.result.value).to.equal(true);
+      done();
+    });
+  });
+  it('should return true for 2', function(done){
+    server.inject({method: 'GET', url: '/puzzles/isprime/2', credentials: {_id: 3}}, function(response){
+      expect(response.statusCode).to.equal(200);
+      expect(response.result.value).to.equal(true);
+      done();
+    });
+  });
+  it('should return false for 45', function(done){
+    server.inject({method: 'GET', url: '/puzzles/isprime/45', credentials: {_id: 3}}, function(response){
+      expect(response.statusCode).to.equal(200);
+      expect(response.result.value).to.equal(false);
+      done();
+    });
+  });
+  it('should return "Neither prime nor composite." for 0', function(done){
+    server.inject({method: 'GET', url: '/puzzles/isprime/0', credentials: {_id: 3}}, function(response){
+      expect(response.statusCode).to.equal(200);
+      expect(response.result.value).to.equal('Neither prime nor composite.');
+      done();
+    });
+  });
+  it('should return true for 3', function(done){
+    server.inject({method: 'GET', url: '/puzzles/isprime/3', credentials: {_id: 3}}, function(response){
+      expect(response.statusCode).to.equal(200);
+      expect(response.result.value).to.equal(true);
+      done();
+    });
+  });
+  it('should return "Not a number." for x', function(done){
+    server.inject({method: 'GET', url: '/puzzles/isprime/x', credentials: {_id: 3}}, function(response){
+      expect(response.statusCode).to.equal(200);
+      expect(response.result.value).to.equal('Not a number.');
+      done();
+    });
+  });
 });
