@@ -44,6 +44,13 @@ describe('GET /puzzles/gcd/{arrofnums} where nums are positive', function(){
       done();
     });
   });
+  it('should return 5 for 20 and 15', function(done){
+    server.inject({method: 'GET', url: '/puzzles/gcd/20,15', credentials: {_id: 3}}, function(response){
+      expect(response.statusCode).to.equal(200);
+      expect(response.result.value).to.equal(5);
+      done();
+    });
+  });
   it('should return 500 for 5500 and 60000', function(done){
     server.inject({method: 'GET', url: '/puzzles/gcd/5500,60000', credentials: {_id: 3}}, function(response){
       expect(response.statusCode).to.equal(200);
